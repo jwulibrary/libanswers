@@ -26,7 +26,7 @@ function libanswerScrape() {
         url: "https://api2.libanswers.com/1.0/faqs?iid=4&sort=totalhits&sort_dir=desc&limit=40",
         dataType: 'jsonp',
         success: function(rawJsonp) {
-            topFaqs = rawJsonp.data.faqs;
+            topFaqs = rawJsonp.faqs;
             randFaq = topFaqs[Math.floor(Math.random() * topFaqs.length)]
             $('#faq-splash').append('<a href="' + randFaq.url.public + '" + target="_blank"> <i style="color:#FFF; font-size:.8em;"class="fa fa-quote-left"></i>  ' + randFaq.question +
                     '  <i style="color:#FFF; font-size:.8em;"class="fa fa-quote-right">')
@@ -57,7 +57,7 @@ function libanswerScrape() {
             url: "https://api2.libanswers.com/1.0/faqs?iid=4&topic_id=" + t[0] + "&sort=updated&sort_dir=desc",
             dataType: 'jsonp',
             success: function(rawJsonp) {
-                faqList = shuffle(rawJsonp.data.faqs).slice(0, 7);
+                faqList = shuffle(rawJsonp.faqs).slice(0, 7);
                 faqList.forEach(function(entry) {
                     $(t[1] + " .topic-link-wrap").append('<li><a class="topic-faq-link pull-left" href="' + entry.url.public + '">' + entry.question + '</li>');
                 });
